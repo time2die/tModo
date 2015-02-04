@@ -138,7 +138,9 @@ public class tModoFrame extends javax.swing.JFrame {
         }
         timeIterator = 0 ;
         timeLabel.setText(Integer.valueOf(timeSlider.getValue()).toString());
-
+        stopTimeDialog d = new stopTimeDialog(this, true) ;
+        d.setVisible(true);
+        
     }//GEN-LAST:event_stopButtonActionPerformed
 
     private void timeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_timeSliderStateChanged
@@ -169,12 +171,6 @@ public class tModoFrame extends javax.swing.JFrame {
             if( timeIterator --  > 0 ){
                 timeLabel.setText(Integer.valueOf(timeIterator).toString());
             }else{
-//                java.awt.EventQueue.invokeLater(() -> {
-//                    StopTimeFrame s = new StopTimeFrame() ;
-//                    s.setVisible(true);
-//                    s.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-//                });
-                
                 stopButtonActionPerformed(null);
             }
         }
