@@ -1,14 +1,9 @@
 package tmodo;
 
-import java.awt.Color;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JSlider;
 import javax.swing.Timer;
-
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 /**
  * @author alex
@@ -17,7 +12,7 @@ public class tModoFrame extends javax.swing.JFrame {
 
     public tModoFrame() {
         initComponents();
-        stopButtonActionPerformed(null);
+        setModelStopState();
     }
 
     @SuppressWarnings("unchecked")
@@ -110,41 +105,41 @@ public class tModoFrame extends javax.swing.JFrame {
         pauseButton.setEnabled(true);
         stopButton.setEnabled(true);
         timeSlider.setEnabled(false);
-        
-        timeIterator = timeSlider.getValue() * 60 ;
-        startTimer() ;
 
+        timeIterator = timeSlider.getValue() * 60;
+        startTimer();
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseButtonActionPerformed
         stopButton.setEnabled(!stopButton.isEnabled());
-        if(timer.isRunning()){
+        if (timer.isRunning()) {
             timer.stop();
-        }else{
-            timer.start() ;
+        } else {
+            timer.start();
         }
     }//GEN-LAST:event_pauseButtonActionPerformed
-        
-    private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
+
+    private void setModelStopState() {
         startButton.setEnabled(true);
         pauseButton.setEnabled(false);
         stopButton.setEnabled(false);
         timeSlider.setEnabled(true);
         timeSlider.setVisible(true);
         timeSlider.setEnabled(true);
-        
-        if( timer != null){
+    }
+
+    private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
+        setModelStopState();
+
+        if (timer != null) {
             timer.stop();
         }
-        timeIterator = 0 ;
+        timeIterator = 0;
         timeLabel.setText(Integer.valueOf(timeSlider.getValue()).toString());
-        stopTimeDialog d = new stopTimeDialog(this, true) ;
-        d.setVisible(true);
-        
     }//GEN-LAST:event_stopButtonActionPerformed
 
     private void timeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_timeSliderStateChanged
-        JSlider slider = (JSlider) evt.getSource() ;
+        JSlider slider = (JSlider) evt.getSource();
         timeLabel.setText(Integer.valueOf(slider.getValue()).toString());
     }//GEN-LAST:event_timeSliderStateChanged
 
@@ -156,22 +151,24 @@ public class tModoFrame extends javax.swing.JFrame {
     private javax.swing.JSlider timeSlider;
     // End of variables declaration//GEN-END:variables
 
-    private Timer timer ;
+    private Timer timer;
 
     private void startTimer() {
-        timer = new Timer(1000, timerAL ) ;
-        timer.start(); 
+        timer = new Timer(1000, timerAL);
+        timer.start();
     }
-    
-    private static int timeIterator = 0 ;
+
+    private static int timeIterator = 0;
     private ActionListener timerAL = new ActionListener() {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if( timeIterator --  > 0 ){
+            if (timeIterator-- > 0) {
                 timeLabel.setText(Integer.valueOf(timeIterator).toString());
-            }else{
+            } else {
                 stopButtonActionPerformed(null);
+                stopTimeDialog d = new stopTimeDialog(tModoFrame.this, true);
+                d.setVisible(true);
             }
         }
     };

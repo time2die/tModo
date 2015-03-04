@@ -1,10 +1,12 @@
 package tmodo;
 
-import javax.swing.JFrame;
+import java.awt.HeadlessException;
+import java.net.MalformedURLException;
+import javafx.embed.swing.JFXPanel;
 
-public class TModo extends  JFrame{
+public class TModo extends  JFXPanel{
  
-     public static void main(String args[]) {
+     public static void main(String args[]) throws HeadlessException, MalformedURLException {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -31,6 +33,9 @@ public class TModo extends  JFrame{
         java.awt.EventQueue.invokeLater(() -> {
             new tModoFrame().setVisible(true);
         });
+        
     }
-    
+
+    public TModo() throws HeadlessException, MalformedURLException {
+    }
 }
