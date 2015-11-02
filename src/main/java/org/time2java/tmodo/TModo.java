@@ -1,4 +1,4 @@
-package tmodo;
+package org.time2java.tmodo;
 
 import java.awt.HeadlessException;
 import java.net.MalformedURLException;
