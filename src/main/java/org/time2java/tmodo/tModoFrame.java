@@ -26,7 +26,7 @@ public class tModoFrame extends javax.swing.JFrame {
         pauseButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
+//        setAlwaysOnTop(true);
         setResizable(false);
 
         timeLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
