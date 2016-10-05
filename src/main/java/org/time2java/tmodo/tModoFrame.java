@@ -2,6 +2,9 @@ package org.time2java.tmodo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JSlider;
 import javax.swing.Timer;
 
@@ -20,6 +23,7 @@ public class tModoFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         timeLabel = new javax.swing.JLabel();
+        startTimeLabel = new javax.swing.JLabel();
         timeSlider = new javax.swing.JSlider();
         startButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
@@ -64,6 +68,8 @@ public class tModoFrame extends javax.swing.JFrame {
             }
         });
 
+        startTimeLabel.setText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,6 +91,7 @@ public class tModoFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(startTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(timeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -107,6 +114,10 @@ public class tModoFrame extends javax.swing.JFrame {
         timeSlider.setEnabled(false);
 
         timeIterator = timeSlider.getValue() * 60;
+
+        String startTime = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()) ;
+        startTimeLabel.setText(startTime);
+
         startTimer();
     }//GEN-LAST:event_startButtonActionPerformed
 
@@ -136,6 +147,7 @@ public class tModoFrame extends javax.swing.JFrame {
         }
         timeIterator = 0;
         timeLabel.setText(Integer.valueOf(timeSlider.getValue()).toString());
+        startTimeLabel.setText("");
     }//GEN-LAST:event_stopButtonActionPerformed
 
     private void timeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_timeSliderStateChanged
@@ -148,6 +160,7 @@ public class tModoFrame extends javax.swing.JFrame {
     private javax.swing.JButton startButton;
     private javax.swing.JButton stopButton;
     private javax.swing.JLabel timeLabel;
+    private javax.swing.JLabel startTimeLabel;
     private javax.swing.JSlider timeSlider;
     // End of variables declaration//GEN-END:variables
 
