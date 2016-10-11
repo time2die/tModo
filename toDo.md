@@ -6,3 +6,4 @@
 6) add configurations
 7) how many succesfull iter in day
 8) todo todo list
+9) add pip pip pip pip pip
