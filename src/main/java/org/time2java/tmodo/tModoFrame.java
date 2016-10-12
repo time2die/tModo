@@ -1,7 +1,13 @@
 package org.time2java.tmodo;
 
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.swing.JSlider;
 import javax.swing.Timer;
 
@@ -147,6 +153,13 @@ public class tModoFrame extends javax.swing.JFrame {
 
     private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
         setModelStopState();
+
+        try (FileInputStream fis = new FileInputStream("beep.mp3")) {
+            Player pl = new Player(fis);
+            pl.play();
+        } catch (JavaLayerException | IOException e){
+            e.printStackTrace();
+        }
 
         if (timer != null) {
             timer.stop();
