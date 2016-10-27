@@ -1,6 +1,8 @@
 package org.time2java.tmodo;
 
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.Map;
 
 /**
  *
@@ -22,7 +24,8 @@ public class stopTimeDialog extends javax.swing.JDialog {
         setSize(xSize, ySize);
         jPanel1.setSize(getSize());
         jPanel1.setPreferredSize(getSize());
-        
+
+        setVolume(0);
         this.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 keyPressedHandler(evt);
@@ -81,13 +84,23 @@ public class stopTimeDialog extends javax.swing.JDialog {
 
     static private int closeIterator = 0 ;
     private void keyPressedHandler(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keyPressedHandler
-        
+
         if (closeIterator++ == 5) {
             closeIterator = 0 ;
             this.setVisible(false);
             this.dispose();
+            setVolume(100);
         }
     }//GEN-LAST:event_keyPressedHandler
+
+    private static void setVolume(int vol){
+        ProcessBuilder pb = new ProcessBuilder("amixer", "sset", "\'Master\'", vol+"%");
+        try {
+            Process p = pb.start();
+        } catch (IOException e) {
+            System.out.println("shit happens");
+        }
+    }
 
     /**
      * @param args the command line arguments
